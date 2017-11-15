@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
-
-//apply plugin: 'kotlin-android'
-
-//apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
@@ -32,17 +30,24 @@ android {
 //            outputFileName = newApkName
 //        }
 //    }
-
-
-//    sourceSets {
-//        main {
-//            res.srcDirs = [
-//                    'src/main/res',
-//                    'src/main/res/layout/activity',
-//                    'src/main/res/layout/fragment',
-//            ]
-//        }
-//    }
+    flavorDimensions "product"
+    productFlavors {
+        main {
+            dimension "product"
+        }
+        develop {
+            dimension "product"
+        }
+    }
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res/layout/activity',
+                    'src/main/res/layout/fragment',
+            ]
+        }
+    }
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
