@@ -51,9 +51,14 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "driver_${variant.versionName}.apk"
+//            outputFileName = "${buildType.name}_${variant.versionName}.apk"
+            outputFileName = "jenkinstest-" + outputFileName.toString().replace(".apk", "-${variant.versionName}-${releaseTime()}.apk")
         }
     }
+}
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd-hh-mm", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {
