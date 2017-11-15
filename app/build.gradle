@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
@@ -20,11 +20,40 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    applicationVariants.all {
+//        outputs.all {
+//            // 输出apk名称
+//            def newApkName
+//            if (buildType.zipAlignEnabled) {
+//                newApkName = "XX_${defaultConfig.versionName}_${packageTime()}_${buildType.name}.apk"
+//            } else {
+//                newApkName = "XX_${defaultConfig.versionName}_${packageTime()}_${buildType.name}.apk"
+//            }
+//            outputFileName = newApkName
+//        }
+//    }
+
+
+//    sourceSets {
+//        main {
+//            res.srcDirs = [
+//                    'src/main/res',
+//                    'src/main/res/layout/activity',
+//                    'src/main/res/layout/fragment',
+//            ]
+//        }
+//    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "driver_${variant.versionName}.apk"
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
