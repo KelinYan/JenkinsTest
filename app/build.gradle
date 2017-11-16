@@ -48,9 +48,9 @@ android {
             ]
         }
     }
-
     android.applicationVariants.all { variant ->
         variant.outputs.all {
+            properties
 //            outputFileName = "${buildType.name}_${variant.versionName}.apk"
             outputFileName = "jenkinstest-" + outputFileName.toString().replace(".apk", "-${variant.versionName}-${releaseTime()}.apk")
         }
@@ -58,7 +58,7 @@ android {
 }
 
 def releaseTime() {
-    return new Date().format("yyyy-MM-dd-hh-mm", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyy-MM-dd-hh-mm", TimeZone.getTimeZone("Asia/Beijing"))
 }
 
 dependencies {
